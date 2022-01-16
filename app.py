@@ -122,8 +122,17 @@ def put_customer(id):
 # update some details Customer
 
 
-# @app.route('/customer/<id>', methods=['PATCH'])
-# def update_customer(id):
+@app.route('/customer/<id>', methods=['PATCH'])
+def patch_customer(id):
+    customer = Customer.query.get(id)
+    role = request.json['role']
+    if customer is None:
+        return ('404')
+    else:
+        customer.role = role
+        db.session.add(customer)
+        db.session.commit()
+        return jsonify({'Success': True, 'response': 'Customer details updated'})
 
 
 # Delete Customer
