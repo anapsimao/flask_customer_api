@@ -132,7 +132,7 @@ def patch_customer(id):
         if not role:
             return jsonify('Role cannot be empty')
         if role == (" "):
-            role = role.strip(" ")
+            role = role.strip("")
             return jsonify('Role cannot be empty')
         else:
             db.session.add(customer)
